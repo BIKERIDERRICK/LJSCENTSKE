@@ -21,6 +21,21 @@ window.addEventListener('scroll', () => {
     lastScroll = currentScroll;
 });
 
+const hamburger = document.querySelector('.hamburger');
+const navContent = document.querySelector('.nav-content');
+
+hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    navContent.classList.toggle('active');
+});
+
+document.querySelectorAll('.nav-content a').forEach(link => {
+    link.addEventListener('click', () => {
+        navContent.classList.remove('active');
+        hamburger.classList.remove('active');
+    });
+});
+
 function getSelectedSize(productName) {
     const select = document.querySelector(`.size-select[data-product="${productName}"]`);
     return select ? select.value.split('|')[0] : '';
@@ -105,7 +120,6 @@ function submitOrder(event) {
     document.getElementById('checkout-form').style.display = 'none';
 }
 
-// Modal Functionality
 const modal = document.getElementById('modal');
 const modalImage = document.getElementById('modal-image');
 const closeModal = document.getElementsByClassName('close')[0];
@@ -128,7 +142,6 @@ modal.addEventListener('click', (e) => {
     }
 });
 
-// Slideshow Functionality
 let slideIndex = 0;
 showSlides();
 
@@ -145,7 +158,6 @@ function showSlides() {
     setTimeout(showSlides, 5000);
 }
 
-// Ensure all "Add to Cart" buttons are bound on page load
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('button[onclick^="addToCart"]').forEach(button => {
         button.addEventListener('click', (e) => {
@@ -157,11 +169,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Pricing Navigation
 function scrollPricing(direction) {
     const rows = document.querySelectorAll('.pricing-grid .product-row');
     rows.forEach(row => {
-        const scrollAmount = 300; // Adjust based on product-card width
+        const scrollAmount = 300;
         if (direction === 'left') {
             row.scrollLeft -= scrollAmount;
         } else if (direction === 'right') {
@@ -170,10 +181,9 @@ function scrollPricing(direction) {
     });
 }
 
-// Products Navigation
 function scrollProducts(direction) {
     const grid = document.querySelector('#products .product-grid');
-    const scrollAmount = 320; // Slightly more than product-card width to ensure smooth transition
+    const scrollAmount = 320;
     if (direction === 'left') {
         grid.scrollLeft -= scrollAmount;
     } else if (direction === 'right') {
