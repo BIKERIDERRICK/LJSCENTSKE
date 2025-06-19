@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LJ SCENTS KE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#products">Products</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#cart"><i class="fas fa-shopping-cart"></i> (<span id="cart-count">0</span>)</a></li>
+        </ul>
+        <div class="phone-number">
+            <a href="tel:+254706361664">
+                <i class="fas fa-phone"></i> +254 706 361 664
+            </a>
+        </div>
+    </nav>
+
+    <a href="https://wa.me/254706361664" class="whatsapp-icon" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    <a href="#cart" class="cart-icon">
+        <i class="fas fa-shopping-cart"></i>
+        <span id="middle-cart-count">0</span>
+    </a>
+
+    <section class="home" id="home">
+        <div class="slideshow-container">
+            <div class="slide fade">
+                <img src="images/Berries Bark Candle.jpg" alt="Slide 1">
+            </div>
+            <div class="slide fade">
+                <img src="images/slide 3.jpg" alt="Slide 2">
+            </div>
+            <div class="slide fade">
+                <img src="images/hero4.jpg" alt="Slide 3">
+            </div>
+        </div>
+        <div class="hero-content">
+            <h1>Welcome to LJ SCENTS</h1>
+            <p>Delightful scents for your space, handmade with love in Kenya.</p>
+            <a href="#products" class="btn">View products</a>
+        </div>
+    </section>
+
+    <section id="about" class="section about-bg">
+        <div class="about-container">
+            <div class="about-text">
+                <h5 class="heading">Discover LJ SCENTS</h5>
+                <h2 class="heading">Handcrafted Scents for Your Home</h2>
+                <p>
+                    LJ SCENTS offers a unique collection of handmade scents, crafted with care in Kenya. 
+                    Our products bring warmth and fragrance to your space, using natural ingredients. 
+                    Explore our range and enjoy the convenience of delivery to your doorstep.
+                </p>
+                <a href="#contact" class="btn-outline">Get In Touch</a>
+            </div>
+            <div class="about-image">
+                <img src="images/hero4(1)(1).png" alt="LJ SCENTS Candles">
+            </div>
+        </div>
+    </section>
+
+    <section id="products" class="section">
+        <div class="section-content animate">
+            <h5 class="heading">Products</h5>
+            <h2 class="heading">Discover Our Scented Collection</h2>
+            <div class="product-navigation">
+                <button class="nav-arrow left" onclick="scrollProducts('left')"><i class="fas fa-chevron-left"></i></button>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <img src="images/Frothy Fantasy-DW 1.jpg" alt="Blossom Double Wick Collection" data-modal="modal" />
+                        <h3>Blossom Double Wick Collection <span>›</span></h3>
+                        <p>100% Natural Soywax Scented Candles</p>
+                        <div class="button-container">
+                            <a href="#blossom-collection" class="btn view-candles-btn">View Double Wick Collection</a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="images/Frothy Fantasy Candle.jpg" alt="Frothy Fantasy Candle" data-modal="modal" />
+                        <h3>Frothy Fantasy Candle <span>›</span></h3>
+                        <p>100% Natural Soywax Scented Candles</p>
+                        <div class="button-container">
+                            <a href="#scented-candles" class="btn view-candles-btn">View Scented Candles</a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="images/reed diffuser1.jpg" alt="Lavender Bliss Diffuser" data-modal="modal" />
+                        <h3>Reed Diffusers <span>›</span></h3>
+                        <p>Best diffuser base and fragrance oils.</p>
+                        <div class="button-container">
+                            <a href="#reed-diffusers" class="btn view-diffusers-btn">View Reed Diffusers</a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="images/spray1.jpg" alt="Citrus Grove Spray" data-modal="modal" />
+                        <h3>Room and Linen Sprays <span>›</span></h3>
+                        <p>Long lasting room and linen spray.</p>
+                        <div class="button-container">
+                            <a href="#room-sprays" class="btn view-sprays-btn">View Room and Linen Sprays</a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="images/Car1.jpg" alt="Car Diffuser" data-modal="modal" />
+                        <h3>Car Diffusers <span>›</span></h3>
+                        <p>Compact and stylish car diffusers for on-the-go fragrance.</p>
+                        <div class="button-container">
+                            <a href="#car-diffusers" class="btn view-cars-btn">View Car Diffusers</a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="images/GiftBox.jpg" alt="Gift Box" data-modal="modal" />
+                        <h3>Gift Box <span>›</span></h3>
+                        <p>Discover our full range of scented products.</p>
+                        <div class="button-container">
+                            <a href="#gift-box" class="btn view-more-btn">View Gift Box</a>
+                        </div>
+                    </div>
+                </div>
+                <button class="nav-arrow right" onclick="scrollProducts('right')"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="section">
+        <div class="section-content animate">
+            <h2 class="heading">Explore Our Collections</h2>
+            <div class="pricing-navigation">
+                <button class="nav-arrow left" onclick="scrollPricing('left')"><i class="fas fa-chevron-left"></i></button>
+                <div class="product-grid pricing-grid">
+                    <!-- Blossom Double Wick Collection Section -->
+                    <h3 id="blossom-collection">Blossom Double Wick Collection</h3>
+                    <div class="product-row">
+                        <div class="product-card">
+                            <img src="images/Berries Bark-DW 3.jpg" alt="Berries Bark-DW 3" data-modal="modal" />
+                            <h3>Berries Bark Double Blossom</h3>
+                            <p class="price">
+                                <select class="size-select" data-product="Berries Bark-DW 3">
+                                    <option value="200ml|1200">200ml - KES 1200</option>
+                                </select>
+                            </p>
+                            <button onclick="addToCart('Berries Bark-DW 3', getSelectedSize('Berries Bark-DW 3'), getSelectedPrice('Berries Bark-DW 3'))">Add to Cart</button>
+                            <p>Floral Sandal wood & Strawberry with double wicks</p>
+                        </div>
+                        <div class="product-card">
+                            <img src="images/Frothy Fantasy-DW 1.jpg" alt="Frothy Fantasy-DW 1" data-modal="modal" />
+                            <h3>Frothy Fantasy Double Blossom </h3>
+                            <p class="price">
+                                <select class="size-select" data-product="Frothy Fantasy-DW 1">
+                                    <option value="200ml|1200">200ml - KES 1200</option>
+                                </select>
+                            </p>
+                            <button onclick="addToCart('Frothy Fantasy-DW 1', getSelectedSize('Frothy Fantasy-DW 1'), getSelectedPrice('Frothy Fantasy-DW 1'))">Add to Cart</button>
+                            <p>Floral Coffee and Marshmallow with double wicks</p>
+                        </div>
+                        <div class="product-card">
+                            <img src="images/Sweet Serenity-DW 1.jpg" alt="Sweet Serenity-DW 1" data-modal="modal" />
+                            <h3>Sweet Serenity Double Blossom </h3>
+                            <p class="price">
+                                <select class="size-select" data-product="Sweet Serenity-DW 1">
+                                    <option value="200ml|1200">200ml - KES 1200</option>
+                                </select>
+                            </p>
+                            <button onclick="addToCart('Sweet Serenity-DW 1', getSelectedSize('Sweet Serenity-DW 1'), getSelectedPrice('Sweet Serenity-DW 1'))">Add to Cart</button>
+                            <p>Floral Lavender and Vanilla with double wicks</p>
+                        </div>
+                    </div>
+
+                    <!-- Scented Candles Section -->
+                    <h3 id="scented-candles">Scented Candles</h3>
+                    <div class="product-row">
+                        <div class="product-card">
+                            <img src="images/Frothy Fantasy Candle.jpg" alt="Frothy Fantasy 60ml" data-modal="modal" />
+                            <h3>Frothy Fantasy</h3>
+                            <p class="price">
+                                <select class="size-select" data-product="Frothy Fantasy">
+                                    <option value="60ml|600">60ml - KES 600</option>
+                                    <option value="100ml|750">100ml - KES 750</option>
+                                    <option value="120ml|850">120ml - KES 850</option>
+                                    <option value="220ml|1300">220ml - KES 1300</option>
+                                    <option value="320ml|1600">320ml - KES 1600</option>
+                                </select>
+                            </p>
+                            <button onclick="addToCart('Frothy Fantasy', getSelectedSize('Frothy Fantasy'), getSelectedPrice('Frothy Fantasy'))">Add to Cart</button>
+                            <p><li>Coffee, Marshmallow</li> <li>Type: Soy wax</li> <li>Burn Time: 40 hours</li> <li>Contents: 1 Scented Candle + 1 box</li> <li>Ideal For: Small to Medium Space</li></p>
+                        </div>
+                        <div class="product-card">
+                            <img src="images/Berries Bark Candle.jpg" alt="Berries Bark" data-modal="modal" />
+                            <h3>Berries Bark</h3>
+                            <p class="price">
+                                <select class="size-select" data-product="Berries Bark">
+                                    <option value="100ml|750">100ml - KES 750</option>
+                                    <option value="120ml|850">120ml - KES 850</option>
+                                    <option value="220ml|1300">220ml - KES 1300</option>
+                                    <option value="320ml|1600">320ml - KES 1600</option>
+                                </select>
+                            </p>
+                            <button onclick="addToCart('Berries Bark', getSelectedSize('Berries Bark'), getSelectedPrice('Berries Bark'))">Add to Cart</button>
+                            <p><li>Sandalwood and Strawberry</li> <li>Type: Soy wax</li> <li>Burn Time: 40 hours</li> <li>Contents: 1 Scented Candle + 1 box</li> <li>Ideal For: Small to Medium Space</li></p>
+                        </div>
+                        <div class="product-card">
+                            <img src="images/Sweet Serenity Candle.jpg" alt="Sweet Serenity" data-modal="modal" />
+                            <h3>Sweet Serenity</h3>
+                            <p class="price">
+                                <select class="size-select" data-product="Sweet Serenity">
+                                    <option value="100ml|750">100ml - KES 750</option>
+                                    <option value="120ml|850">120ml - KES 850</option>
+                                    <option value="220ml|1300">220ml - KES 1300</option>
+                                    <option value="320ml|1600">320ml - KES 1600</option>
+                                </select>
+                            </p>
+                            <button onclick="addToCart('Sweet Serenity', getSelectedSize('Sweet Serenity'), getSelectedPrice('Sweet Serenity'))">Add to Cart</button>
+                            <p><li>Fruity/Floral, Vanilla</li> <li>Type: Soy wax</li> <li>Burn Time: 40 hours</li> <li>Contents: 1 Scented Candle + 1 box</li> <li>Ideal For: Small to Medium Space</li></p>
+                        </div>
+                    </div>
+
+                    <!-- Reed Diffusers Section -->
+                    <h3 id="reed-diffusers">Reed Diffusers</h3>
+                    <div class="product-row">
+                        <div class="product-card">
+                            <img src="images/Pine Bliss.jpg" alt="Pine Bliss Diffuser" data-modal="modal" />
+                            <h3>Pine Bliss Diffuser</h3>
+                            <p class="price">
+                                <select class="size-select" data-product="Pine Bliss Diffuser">
+                                    <option value="100ml|1600">100ml - KES 1600</option>
+                                    <option value="150ml|1800">150ml - KES 1800</option>
+                                </select>
+                            </p>
+                            <button onclick="addToCart('Pine Bliss Diffuser', getSelectedSize('Pine Bliss Diffuser'), getSelectedPrice('Pine Bliss Diffuser'))">Add to Cart</button>
+                            <p><li>Calming Pine</li> <li>Scents: Pine and Cedar wood</li> <li>Burn Time: 4-6 wks</li> <li>Contents: 1 Reed Diffuser+1 box+5 Rattan reeds</li> <li>Ideal For: Small to Medium Space such as Bedroom, Office, Bathroom, Living room</li></p>
+                        </div>
+                        <div class="product-card">
+                            <img src="images/Pine Breeze 1.jpg" alt="Pine Breeze Diffuser" data-modal="modal" />
+                            <h3>Pine Breeze Diffuser</h3>
+                            <p class="price">
+                                <select class="size-select" data-product="Pine Breeze Diffuser">
+                                    <option value="100ml|1600">100ml - KES 1600</option>
+                                    <option value="150ml|1600">150ml - KES 1600</option>
+                                </select>
+                            </p>
+                            <button onclick="addToCart('Pine Breeze Diffuser', getSelectedSize('Pine Breeze Diffuser'), getSelectedPrice('Pine Breeze Diffuser'))">Add to Cart</button>
+                            <p><li>Calming Pine</li> <li>Scents: Apple pie & Bubblegum</li> <li>Burn Time: 4-6 wks</li> <li>Contents: 1 Reed Diffuser+1 box+5 Rattan reeds</li><li>Ideal For: Small to Medium Space such as Bedroom, Office, Bathroom, Living room</li></p>
+                        </div>
+                    </div>
+
+                    <!-- Room and Linen Sprays Section -->
+                    <h3 id="room-sprays">Room and Linen Sprays</h3>
+                    <div class="product-row">
+                        <div class="product-card">
+                            <img src="images/Citrus whisper.jpg" alt="Citrus Whisper" data-modal="modal" />
+                            <h3>Citrus Whisper</h3>
+                            <p class="price">
+                                <select class="size-select" data-product="Citrus Whisper">
+                                    <option value="100ml|950">100ml - KES 950</option>
+                                    <option value="150ml|1100">150ml - KES 1100</option>
+                                </select>
+                            </p>
+                            <button onclick="addToCart('Citrus Whisper', getSelectedSize('Citrus Whisper'), getSelectedPrice('Citrus Whisper'))">Add to Cart</button>
+                            <p><li>Scents: Orange Blossom</li> <li>Contents: 1 Room and Linen Spray</li> <li>Ideal For: Small to Medium Space such as Bedroom, Office, Bathroom, Living room</li><li>Linen: Curtains, coaches, carpets, beddings</li></p>
+                        </div>
+                        <div class="product-card">
+                            <img src="images/Lavender Comfort.jpg" alt="Lavender Comfort" data-modal="modal" />
+                            <h3>Lavender Comfort</h3>
+                            <p class="price">
+                                <select class="size-select" data-product="Lavender Comfort">
+                                   <option value="100ml|950">100ml - KES 950</option>
+                                    <option value="150ml|1100">150ml - KES 1100</option>
+                                </select>
+                            </p>
+                            <button onclick="addToCart('Lavender Comfort', getSelectedSize('Lavender Comfort'), getSelectedPrice('Lavender Comfort'))">Add to Cart</button>
+                            <p><li>Scents: Lavender</li><li>Contents: 1 Room and Linen Spray</li> <li>Ideal For: Small to Medium Space such as Bedroom, Office, Bathroom, Living room</li><li>Linen: Curtains, coaches, carpets, beddings</li></p>
+                        </div>
+                    </div>
+
+                    <!-- Car Diffusers Section -->
+                    <h3 id="car-diffusers">Car Diffusers</h3>
+                    <div class="product-row">
+                        <div class="product-card">
+                            <img src="images/car pie bliss.jpg" alt="Pine Bliss" data-modal="modal" />
+                            <h3>Pine Bliss</h3>
+                            <p class="price">
+                                <select class="size-select" data-product="Pine Bliss">
+                                    <option value="10ml|600">10ml - KES 600</option>
+                                </select>
+                            </p>
+                            <button onclick="addToCart('Pine Bliss', getSelectedSize('Pine Bliss'), getSelectedPrice('Pine Bliss'))">Add to Cart</button>
+                            <p><li>Scents: Pine and Cedar wood</li> <li>Longevity: 3-4 weeks</li> <li>Weight: 10ml</li></p>
+                        </div>
+                        <div class="product-card">
+                            <img src="images/Car1.jpg" alt="Pine Breeze" data-modal="modal" />
+                            <h3>Pine Breeze</h3>
+                            <p class="price">
+                                <select class="size-select" data-product="Pine Breeze">
+                                    <option value="10ml|600">10ml - KES 600</option>
+                                </select>
+                            </p>
+                            <button onclick="addToCart('Pine Breeze', getSelectedSize('Pine Breeze'), getSelectedPrice('Pine Breeze'))">Add to Cart</button>
+                            <p><li>Scents: Pine and Cedar wood</li> <li>Longevity: 3-4 weeks</li> <li>Weight: 10ml</li></p>
+                        </div>
+                    </div>
+                </div>
+                <button class="nav-arrow right" onclick="scrollPricing('right')"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            <!-- Gift Box Section -->
+            <h3 id="gift-box">Gift Box</h3>
+            
+            <div class="product-row">
+                <div class="product-card">
+                    <img src="images/GiftBox.jpg" alt="Gift Box" data-modal="modal" />
+                    <h3>Gift Box</h3>
+                    <p class="price">
+                        <select class="size-select" data-product="Gift Box">
+                            <option value="1box|4000">1 Box - KES 4000</option>
+                        </select>
+                    </p>
+                    <button onclick="addToCart('Gift Box', getSelectedSize('Gift Box'), getSelectedPrice('Gift Box'))">Add to Cart</button>
+                    <p>
+                        <li>1 x 200ml Blossom Collection Scented Candle</li>
+                        <li>1 x 150ml Room and Linen Spray</li>
+                        <li>1 x 150ml Reed Diffuser</li>
+                     
+                    </p>
+                </div>
+                 <div class="product-card">
+                    <img src="images/GiftBox.jpg" alt="Gift Box" data-modal="modal" />
+                    <h3>Gift Box</h3>
+                    <p class="price">
+                        <select class="size-select" data-product="Gift Box">
+                            <option value="1box|4800">1 Box - KES 4800</option>
+                        </select>
+                    </p>
+                    <button onclick="addToCart('Gift Box', getSelectedSize('Gift Box'), getSelectedPrice('Gift Box'))">Add to Cart</button>
+                    <p>
+                        <li>1 x 220ml Scented Candle</li>
+                        <li>1 x 150ml Room and Linen Spray</li>
+                        <li>1 x 150ml Reed Diffuser</li>
+                        <li>1 x 10ml Car Diffuser</li>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="cart" class="section">
+        <div class="section-content animate">
+            <h5 class="heading">Your Cart</h5>
+            <h2 class="heading"><i class="fas fa-shopping-cart"></i> Review Your Order</h2>
+            <div id="cart-items"></div>
+            <p>Total: KES <span id="cart-total">0.00</span></p>
+            <button onclick="proceedToCheckout()" class="btn">Proceed to Checkout</button>
+        </div>
+        <div id="checkout-form" style="display: none;">
+            <h2>Checkout</h2>
+            <form id="order-form" onsubmit="submitOrder(event)">
+                <label for="name">Your Name</label><br />
+                <input type="text" id="name" name="name" required /><br />
+                <label for="email">Your Email</label><br />
+                <input type="email" id="email" name="email" required /><br />
+                <label for="address">Shipping Address</label><br />
+                <textarea id="address" name="address" rows="5" required></textarea><br />
+                <button type="submit" class="btn">Place Order via WhatsApp</button>
+            </form>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <h2>Contact Us</h2>
+        <form action="https://formspree.io/f/xzzrjdqe" method="POST">
+            <label for="name">Your Name</label><br />
+            <input type="text" id="name" name="name" required /><br />
+            <label for="email">Your Email</label><br />
+            <input type="email" id="email" name="email" required /><br />
+            <label for="message">Message</label><br />
+            <textarea id="message" name="message" rows="5" required></textarea><br />
+            <button type="submit">Send Feedback</button>
+        </form>
+        <p><strong>Location:</strong> Nairobi</p>
+        <div class="social-icons">
+            <a href="https://www.instagram.com/ljscentske" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.tiktok.com/@ljscentske" target="_blank" rel="noopener noreferrer"><i class="fab fa-tiktok"></i></a>
+            <a href="mailto:info@ljscentske.com"><i class="fas fa-envelope"></i></a>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 LJ SCENTS KE All rights reserved.</p>
+    </footer>
+
+    <div id="modal" class="modal">
+        <span class="close">×</span>
+        <img class="modal-content" id="modal-image">
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
