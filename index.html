@@ -10,18 +10,25 @@
 </head>
 <body>
     <nav>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#products">Products</a></li>
-            <li><a href="#pricing">Pricing</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li><a href="#cart"><i class="fas fa-shopping-cart"></i> (<span id="cart-count">0</span>)</a></li>
-        </ul>
-        <div class="phone-number">
-            <a href="tel:+254706361664">
-                <i class="fas fa-phone"></i> +254 706 361 664
-            </a>
+        <button class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div class="nav-content">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#cart"><i class="fas fa-shopping-cart"></i> (<span id="cart-count">0</span>)</a></li>
+            </ul>
+            <div class="phone-number">
+                <a href="tel:+254706361664">
+                    <i class="fas fa-phone"></i> +254 706 361 664
+                </a>
+            </div>
         </div>
     </nav>
 
@@ -225,7 +232,7 @@
 
                     <!-- Reed Diffusers Section -->
                     <h3 id="reed-diffusers">Reed Diffusers</h3>
-                    <div class="product-row">
+                    <div class="product-row no-arrows" id="reed-diffusers-row">
                         <div class="product-card">
                             <img src="images/Pine Bliss.jpg" alt="Pine Bliss Diffuser" data-modal="modal" />
                             <h3>Pine Bliss Diffuser</h3>
