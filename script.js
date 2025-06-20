@@ -1,3 +1,4 @@
+// Smooth scroll for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -7,20 +8,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-let cart = [];
-let lastScroll = 0;
-
-window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
-    const nav = document.querySelector('nav');
-    if (currentScroll > lastScroll && currentScroll > 50) {
-        nav.classList.add('hidden');
-    } else {
-        nav.classList.remove('hidden');
-    }
-    lastScroll = currentScroll;
-});
-
+// Hamburger menu toggle
 const hamburger = document.querySelector('.hamburger');
 const navContent = document.querySelector('.nav-content');
 
@@ -29,12 +17,31 @@ hamburger.addEventListener('click', () => {
     navContent.classList.toggle('active');
 });
 
+// Close mobile nav when link is clicked
 document.querySelectorAll('.nav-content a').forEach(link => {
     link.addEventListener('click', () => {
         navContent.classList.remove('active');
         hamburger.classList.remove('active');
     });
 });
+
+// Show/hide nav on scroll
+let lastScroll = 0;
+window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
+    const nav = document.querySelector('nav');
+
+    if (currentScroll > lastScroll && currentScroll > 50) {
+        nav.classList.add('hidden');
+    } else {
+        nav.classList.remove('hidden');
+    }
+
+    lastScroll = currentScroll;
+});
+
+// Cart and product logic (integrated from your provided code)
+let cart = [];
 
 function getSelectedSize(productName) {
     const select = document.querySelector(`.size-select[data-product="${productName}"]`);
@@ -48,51 +55,43 @@ function getSelectedPrice(productName) {
 
 function addToCart(name, size, price) {
     if (!name || !size || !price) {
-        console.log("Error: Missing cart item details", { name, size, price });
+        console.error("Missing cart item details", { name, size, price });
         return;
     }
-    const existingItem = cart.find(item => item.name === name && item.size === size);
-    if (existingItem) {
-        existingItem.quantity += 1;
-    } else {
-        cart.push({ name, size, price, quantity: 1 });
-    }
+    const existing = cart.find(item => item.name === name && item.size === size);
+    if (existing) existing.quantity += 1;
+    else cart.push({ name, size, price, quantity: 1 });
     updateCart();
-    console.log("Cart updated:", cart);
 }
 
-function removeFromCart(index) {
-    if (index >= 0 && index < cart.length) {
-        cart.splice(index, 1);
+function removeFromCart(idx) {
+    if (idx >= 0 && idx < cart.length) {
+        cart.splice(idx, 1);
         updateCart();
     }
 }
 
 function updateCart() {
-    const cartItems = document.getElementById('cart-items');
-    const cartTotal = document.getElementById('cart-total');
-    const cartCount = document.getElementById('cart-count');
-    const middleCartCount = document.getElementById('middle-cart-count');
-    cartItems.innerHTML = '';
+    const items = document.getElementById('cart-items');
+    const totalEl = document.getElementById('cart-total');
+    const countEls = [document.getElementById('cart-count'), document.getElementById('middle-cart-count')];
+    items.innerHTML = '';
 
-    let total = 0;
-    let totalQuantity = 0;
-    cart.forEach((item, index) => {
+    let total = 0, tQty = 0;
+    cart.forEach((item, idx) => {
         total += item.price * item.quantity;
-        totalQuantity += item.quantity;
-        const itemElement = document.createElement('div');
-        itemElement.className = 'cart-item';
-        itemElement.innerHTML = `
+        tQty += item.quantity;
+        const div = document.createElement('div');
+        div.className = 'cart-item';
+        div.innerHTML = `
             ${item.name} (${item.size}) - KES ${item.price} x ${item.quantity}
-            <button onclick="removeFromCart(${index})">Remove</button>
+            <button onclick="removeFromCart(${idx})">Remove</button>
         `;
-        cartItems.appendChild(itemElement);
+        items.appendChild(div);
     });
 
-    cartTotal.textContent = total.toFixed(2);
-    cartCount.textContent = totalQuantity;
-    middleCartCount.textContent = totalQuantity;
-    console.log("Cart count updated to:", totalQuantity);
+    totalEl.textContent = total.toFixed(2);
+    countEls.forEach(el => el.textContent = tQty);
 }
 
 function proceedToCheckout() {
@@ -103,16 +102,20 @@ function proceedToCheckout() {
     document.getElementById('checkout-form').style.display = 'block';
 }
 
-function submitOrder(event) {
-    event.preventDefault();
+function submitOrder(e) {
+    e.preventDefault();
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
-    const address = document.getElementById('address').value;
+    const addr = document.getElementById('address').value;
 
-    const orderDetails = `Order from ${name}\nEmail: ${email}\nAddress: ${address}\nItems:\n${cart.map(item => `${item.name} (${item.size}) - KES ${item.price} x ${item.quantity}`).join('\n')}\nTotal: KES ${cart.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2)}`;
-    const whatsappUrl = `https://wa.me/254706361664?text=${encodeURIComponent(orderDetails)}`;
+    const details = `Order from ${name}\nEmail: ${email}\nAddress: ${addr}\n` +
+        cart.map(i => `${i.name} (${i.size}) - KES ${i.price} x ${i.quantity}`).join('\n') +
+        `\nTotal: KES ${cart.reduce((s,i) => s + i.price * i.quantity, 0).toFixed(2)}`;
 
-    window.open(whatsappUrl, '_blank');
+    window.open(
+        `https://wa.me/254706361664?text=${encodeURIComponent(details)}`,
+        '_blank'
+    );
 
     cart = [];
     updateCart();
@@ -120,9 +123,10 @@ function submitOrder(event) {
     document.getElementById('checkout-form').style.display = 'none';
 }
 
+// Image modal functionality
 const modal = document.getElementById('modal');
 const modalImage = document.getElementById('modal-image');
-const closeModal = document.getElementsByClassName('close')[0];
+const closeModal = document.querySelector('.close');
 
 document.querySelectorAll('img[data-modal]').forEach(img => {
     img.addEventListener('click', () => {
@@ -132,61 +136,45 @@ document.querySelectorAll('img[data-modal]').forEach(img => {
     });
 });
 
-closeModal.addEventListener('click', () => {
-    modal.style.display = 'none';
+closeModal.addEventListener('click', () => modal.style.display = 'none');
+modal.addEventListener('click', e => {
+    if (e.target === modal) modal.style.display = 'none';
 });
 
-modal.addEventListener('click', (e) => {
-    if (e.target === modal) {
-        modal.style.display = 'none';
-    }
-});
-
+// Slideshow behavior
 let slideIndex = 0;
-showSlides();
-
 function showSlides() {
-    const slides = document.getElementsByClassName('slide');
-    for (let i = 0; i < slides.length; i++) {
-        slides[i].classList.remove('active');
-    }
-    slideIndex++;
-    if (slideIndex > slides.length) {
-        slideIndex = 1;
-    }
+    const slides = document.querySelectorAll('.slide');
+    slides.forEach(s => s.classList.remove('active'));
+    slideIndex = (slideIndex % slides.length) + 1;
     slides[slideIndex - 1].classList.add('active');
     setTimeout(showSlides, 5000);
 }
+document.addEventListener('DOMContentLoaded', showSlides);
 
+// Re-attach cart buttons after DOM renders
 document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('button[onclick^="addToCart"]').forEach(button => {
-        button.addEventListener('click', (e) => {
-            const [name, sizeFunc, priceFunc] = button.getAttribute('onclick').replace('addToCart(', '').replace(')', '').split(',');
-            const size = eval(sizeFunc);
-            const price = eval(priceFunc);
+    document.querySelectorAll('button[onclick^="addToCart"]').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const [name, sizeFn, priceFn] = btn
+                .getAttribute('onclick')
+                .replace('addToCart(', '')
+                .replace(')', '')
+                .split(',');
+            const size = eval(sizeFn);
+            const price = eval(priceFn);
             addToCart(name.replace(/['"]/g, ''), size, price);
         });
     });
 });
 
+// Scrolling arrows
 function scrollPricing(direction) {
-    const rows = document.querySelectorAll('.pricing-grid .product-row');
-    rows.forEach(row => {
-        const scrollAmount = 300;
-        if (direction === 'left') {
-            row.scrollLeft -= scrollAmount;
-        } else if (direction === 'right') {
-            row.scrollLeft += scrollAmount;
-        }
+    document.querySelectorAll('.pricing-grid .product-row').forEach(row => {
+        row.scrollLeft += direction === 'left' ? -300 : 300;
     });
 }
-
 function scrollProducts(direction) {
     const grid = document.querySelector('#products .product-grid');
-    const scrollAmount = 320;
-    if (direction === 'left') {
-        grid.scrollLeft -= scrollAmount;
-    } else if (direction === 'right') {
-        grid.scrollLeft += scrollAmount;
-    }
+    grid.scrollLeft += direction === 'left' ? -320 : 320;
 }
