@@ -734,8 +734,8 @@ footer {
         position: fixed;
         top: 0;
         left: -100%;
-        width: 100%;
-        height: auto;
+        width: 25%;
+        height: 100%;
         background: #f4f1ed;
         z-index: 1000;
         flex-direction: column;
@@ -751,10 +751,13 @@ footer {
     }
     nav ul {
         flex-direction: column;
-        text-align: center;
+        align-items: flex-start;
+        width: 100%;
     }
     nav ul li {
         margin: 1rem 0;
+        width: 100%;
+        
     }
     .phone-number {
         margin-top: 2rem;
