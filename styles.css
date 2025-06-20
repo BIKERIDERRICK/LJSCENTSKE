@@ -735,13 +735,16 @@ footer {
         top: 0;
         left: -100%;
         width: 100%;
-        height: 100%;
+        height: auto;
         background: #f4f1ed;
         z-index: 1000;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         transition: left 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        border-bottom: 1px solid #ddd;
+        
     }
     .nav-content.active {
         left: 0;
