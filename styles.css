@@ -734,7 +734,7 @@ footer {
         position: fixed;
         top: 0;
         left: -100%;
-        width: 25%;
+        width: 50%;
         height: 100%;
         background: #f4f1ed;
         z-index: 1000;
