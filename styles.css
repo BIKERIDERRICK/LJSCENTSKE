@@ -4,6 +4,11 @@
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
 }
+/*prevent horizontal overflow*/
+html,body {
+    max-width: 100vw;
+    overflow-x: hidden; 
+}
 
 body {
     line-height: 1.6;
@@ -767,8 +772,16 @@ footer {
     .about-image img {
         margin-top: 20px;
     }
+    product-grid,
+    .product-row {
+        padding: 0 10px;
+        margin: 0 auto;
+        justify-content: center;
+    }
     .product-card {
-        width: 300px;
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto;
     }
     .product-row {
         flex-wrap: wrap;
@@ -794,6 +807,9 @@ footer {
         font-size: 1.2rem;
         padding: 8px;
     }
+     .button-container .btn {
+        width: 100%;
+    }
 }
 
 @media (max-width: 480px) {
@@ -817,4 +833,6 @@ footer {
         font-size: 1rem;
         padding: 6px;
     }
+}
+
 }
