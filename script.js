@@ -178,3 +178,52 @@ function scrollProducts(direction) {
     const grid = document.querySelector('#products .product-grid');
     grid.scrollLeft += direction === 'left' ? -320 : 320;
 }
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
+
+// Hamburger menu toggle with backdrop
+const hamburger = document.querySelector('.hamburger');
+const navContent = document.querySelector('.nav-content');
+const navBackdrop = document.createElement('div');
+navBackdrop.className = 'nav-backdrop';
+document.body.appendChild(navBackdrop);
+
+hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    navContent.classList.toggle('active');
+    navBackdrop.classList.toggle('active');
+});
+
+// Close mobile nav when link or backdrop is clicked
+document.querySelectorAll('.nav-content a, .nav-backdrop').forEach(element => {
+    element.addEventListener('click', () => {
+        navContent.classList.remove('active');
+        hamburger.classList.remove('active');
+        navBackdrop.classList.remove('active');
+    });
+});
+
+// Show/hide nav on scroll (unchanged)
+let lastScroll = 0;
+window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
+    const nav = document.querySelector('nav');
+
+    if (currentScroll > lastScroll && currentScroll > 50) {
+        nav.classList.add('hidden');
+    } else {
+        nav.classList.remove('hidden');
+    }
+
+    lastScroll = currentScroll;
+});
+
+// Existing cart and product logic remains unchanged
+// [Previous cart functions remain here]
