@@ -730,6 +730,15 @@ footer {
         left: 20px;
         z-index: 2000;
     }
+    .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 8px); /* Move X up */
+    }
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+    .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(6px, -8px); /* Move X up */
+    }
     .nav-content {
         position: fixed;
         top: 0;
@@ -741,6 +750,7 @@ footer {
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        padding: 80px 20px 20px;
         transition: left 0.3s ease;
         box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         border-bottom: 1px solid #ddd;
@@ -753,11 +763,15 @@ footer {
         flex-direction: column;
         align-items: flex-start;
         width: 100%;
+        padding-top: 20px;
     }
     nav ul li {
-        margin: 1rem 0;
+        margin: 1.5rem 0;
         width: 100%;
         
+    }
+     nav ul li:first-child a { /* Target the Home link */
+        margin-top: 10px; /* Move Home down further */
     }
     .phone-number {
         margin-top: 2rem;
