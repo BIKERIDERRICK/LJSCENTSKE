@@ -748,7 +748,7 @@ footer {
     }
     .logo {
         height: 40px; /* Smaller size for mobile */
-        top: 10px;
+        top: 20px;
         right: 20px;
     }
     .nav-content {
