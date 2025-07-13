@@ -17,7 +17,7 @@ body {
 }
 
 nav {
-    position: fixed;
+   position: fixed;
     top: 0;
     width: 100%;
     background: #f4f1ed;
@@ -25,7 +25,7 @@ nav {
     z-index: 1000;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: center; /* Center align items vertically */
     padding: 0 2rem;
     transition: background 0.3s ease;
 }
@@ -48,10 +48,9 @@ nav.hidden .phone-number a i {
 }
 .logo {
     height: 50px; /* Adjust size as needed */
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    z-index: 1001;
+    margin-right: 20px; /* Space from the right edge */
+    display: flex; /* Ensure it aligns with flex container */
+    align-items: center; /* Vertically center the image */
 }
 
 .hamburger {
@@ -748,8 +747,11 @@ footer {
     }
     .logo {
         height: 40px; /* Smaller size for mobile */
+        margin-right: 20px; /* Maintain right spacing */
+        position: fixed; /* Align with hamburger */
         top: 20px;
         right: 20px;
+        z-index: 2000; /* Match hamburger z-index */
     }
     .nav-content {
         position: fixed;
