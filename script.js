@@ -85,6 +85,10 @@ document.addEventListener('DOMContentLoaded', () => {
         return price;
     }
 
+    function sanitizeInput(input) {
+        return input.replace(/[<>"'&]/g, '');
+    }
+
     function addToCart(name, size, price) {
         if (!name || !size || !price) {
             console.error('Missing cart item details', { name, size, price });
@@ -119,17 +123,21 @@ document.addEventListener('DOMContentLoaded', () => {
             tQty += item.quantity;
             const div = document.createElement('div');
             div.className = 'cart-item';
-            div.innerHTML = `
-                ${item.name} (${item.size}) - KES ${item.price.toFixed(2)} x ${item.quantity}
-                <button class="remove-from-cart" data-idx="${idx}">Remove</button>
-            `;
+            const text = document.createTextNode(
+                `${item.name} (${item.size}) - KES ${item.price.toFixed(2)} x ${item.quantity}`
+            );
+            const button = document.createElement('button');
+            button.className = 'remove-from-cart';
+            button.dataset.idx = idx;
+            button.textContent = 'Remove';
+            div.appendChild(text);
+            div.appendChild(button);
             items.appendChild(div);
         });
 
         totalEl.textContent = total.toFixed(2);
         countEls.forEach(el => el.textContent = tQty);
 
-        // Attach remove button listeners
         document.querySelectorAll('.remove-from-cart').forEach(btn => {
             btn.addEventListener('click', () => {
                 removeFromCart(parseInt(btn.dataset.idx));
@@ -147,15 +155,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function submitOrder(e) {
         e.preventDefault();
-        const name = document.getElementById('name').value.trim();
+        const name = sanitizeInput(document.getElementById('name').value.trim());
         const email = document.getElementById('email').value.trim();
-        const addr = document.getElementById('address').value.trim();
+        const addr = sanitizeInput(document.getElementById('address').value.trim());
 
         if (!name || !email || !addr) {
             alert('Please fill in all fields.');
             return;
         }
-        if (!email.includes('@') || !email.includes('.')) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
             alert('Please enter a valid email address.');
             return;
         }
@@ -165,7 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
             `\nTotal: KES ${cart.reduce((s, i) => s + i.price * i.quantity, 0).toFixed(2)}`;
 
         window.open(
-            `https://wa.me/+254702899085?text=${encodeURIComponent(details)}`,
+            `https://wa.me/254702899085?text=${encodeURIComponent(details)}`,
             '_blank'
         );
 
@@ -220,21 +229,25 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Scrolling arrows
-    window.scrollPricing = function(direction) {
+    function scrollPricing(direction) {
         document.querySelectorAll('.pricing-grid .product-row').forEach(row => {
             row.scrollLeft += direction === 'left' ? -300 : 300;
         });
-    };
+    }
 
-    window.scrollProducts = function(direction) {
+    function scrollProducts(direction) {
         const grid = document.querySelector('#products .product-grid');
         if (grid) {
             grid.scrollLeft += direction === 'left' ? -320 : 320;
         }
-    };
+    }
+
+    // Expose only if necessary for inline HTML
+    window.scrollPricing = scrollPricing;
+    window.scrollProducts = scrollProducts;
 });
 
-// Global functions for scrolling and cart
+// Global function for cart
 function removeFromCart(idx) {
     if (idx >= 0 && idx < cart.length) {
         cart.splice(idx, 1);
