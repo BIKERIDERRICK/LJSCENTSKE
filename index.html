@@ -15,7 +15,7 @@
             <span></span>
             <span></span>
         </button>
-          <img src="images/LJ LOGO.jpg" alt="LJ SCENTS Logo" class="logo">
+        <img src="images/LJ LOGO.jpg" alt="LJ SCENTS Logo" class="logo">
         <div class="nav-content">
             <ul>
                 <li><a href="#home">Home</a></li>
@@ -42,7 +42,7 @@
     </a>
 
     <section class="home" id="home">
-       <div class="slideshow-container">
+        <div class="slideshow-container">
             <div class="slide fade">
                 <img src="images/LJ LOGO.jpg" alt="Slide 1">
             </div>
@@ -55,7 +55,6 @@
             <div class="slide fade">
                 <img src="images/Berries Bark Candle.jpg" alt="Slide 4">
             </div>
-
         </div>
         <div class="hero-content">
             <h1>Welcome to LJ SCENTS</h1>
@@ -160,7 +159,7 @@
                                     <option value="200ml|1200">200ml - KES 1200</option>
                                 </select>
                             </p>
-                            <button onclick="addToCart('Berries Bark-DW 3', getSelectedSize('Berries Bark-DW 3'), getSelectedPrice('Berries Bark-DW 3'))">Add to Cart</button>
+                            <button class="add-to-cart-btn" data-product="Berries Bark-DW 3">Add to Cart</button>
                             <p>Floral Sandal wood & Strawberry with double wicks</p>
                         </div>
                         <div class="product-card">
@@ -171,7 +170,7 @@
                                     <option value="200ml|1200">200ml - KES 1200</option>
                                 </select>
                             </p>
-                            <button onclick="addToCart('Frothy Fantasy-DW 1', getSelectedSize('Frothy Fantasy-DW 1'), getSelectedPrice('Frothy Fantasy-DW 1'))">Add to Cart</button>
+                            <button class="add-to-cart-btn" data-product="Frothy Fantasy-DW 1">Add to Cart</button>
                             <p>Floral Coffee and Marshmallow with double wicks</p>
                         </div>
                         <div class="product-card">
@@ -182,7 +181,7 @@
                                     <option value="200ml|1200">200ml - KES 1200</option>
                                 </select>
                             </p>
-                            <button onclick="addToCart('Sweet Serenity-DW 1', getSelectedSize('Sweet Serenity-DW 1'), getSelectedPrice('Sweet Serenity-DW 1'))">Add to Cart</button>
+                            <button class="add-to-cart-btn" data-product="Sweet Serenity-DW 1">Add to Cart</button>
                             <p>Floral Lavender and Vanilla with double wicks</p>
                         </div>
                     </div>
@@ -191,7 +190,7 @@
                     <h3 id="scented-candles">Scented Candles</h3>
                     <div class="product-row">
                         <div class="product-card">
-                            <img src="images/Frothy Fantasy Candle.jpg" alt="Frothy Fantasy 60ml" data-modal="modal" />
+                            <img src="images/Frothy Fantasy Candle.jpg" alt="Frothy Fantasy" data-modal="modal" />
                             <h3>Frothy Fantasy</h3>
                             <p class="price">
                                 <select class="size-select" data-product="Frothy Fantasy">
@@ -202,7 +201,7 @@
                                     <option value="320ml|1600">320ml - KES 1600</option>
                                 </select>
                             </p>
-                            <button onclick="addToCart('Frothy Fantasy', getSelectedSize('Frothy Fantasy'), getSelectedPrice('Frothy Fantasy'))">Add to Cart</button>
+                            <button class="add-to-cart-btn" data-product="Frothy Fantasy">Add to Cart</button>
                             <p><li>Coffee, Marshmallow</li> <li>Type: Soy wax</li> <li>Burn Time: 40 hours</li> <li>Contents: 1 Scented Candle + 1 box</li> <li>Ideal For: Small to Medium Space</li></p>
                         </div>
                         <div class="product-card">
@@ -216,7 +215,7 @@
                                     <option value="320ml|1600">320ml - KES 1600</option>
                                 </select>
                             </p>
-                            <button onclick="addToCart('Berries Bark', getSelectedSize('Berries Bark'), getSelectedPrice('Berries Bark'))">Add to Cart</button>
+                            <button class="add-to-cart-btn" data-product="Berries Bark">Add to Cart</button>
                             <p><li>Sandalwood and Strawberry</li> <li>Type: Soy wax</li> <li>Burn Time: 40 hours</li> <li>Contents: 1 Scented Candle + 1 box</li> <li>Ideal For: Small to Medium Space</li></p>
                         </div>
                         <div class="product-card">
@@ -230,7 +229,7 @@
                                     <option value="320ml|1600">320ml - KES 1600</option>
                                 </select>
                             </p>
-                            <button onclick="addToCart('Sweet Serenity', getSelectedSize('Sweet Serenity'), getSelectedPrice('Sweet Serenity'))">Add to Cart</button>
+                            <button class="add-to-cart-btn" data-product="Sweet Serenity">Add to Cart</button>
                             <p><li>Fruity/Floral, Vanilla</li> <li>Type: Soy wax</li> <li>Burn Time: 40 hours</li> <li>Contents: 1 Scented Candle + 1 box</li> <li>Ideal For: Small to Medium Space</li></p>
                         </div>
                     </div>
@@ -247,7 +246,7 @@
                                     <option value="150ml|1800">150ml - KES 1800</option>
                                 </select>
                             </p>
-                            <button onclick="addToCart('Pine Bliss Diffuser', getSelectedSize('Pine Bliss Diffuser'), getSelectedPrice('Pine Bliss Diffuser'))">Add to Cart</button>
+                            <button class="add-to-cart-btn" data-product="Pine Bliss Diffuser">Add to Cart</button>
                             <p><li>Calming Pine</li> <li>Scents: Pine and Cedar wood</li> <li>Burn Time: 4-6 wks</li> <li>Contents: 1 Reed Diffuser+1 box+5 Rattan reeds</li> <li>Ideal For: Small to Medium Space such as Bedroom, Office, Bathroom, Living room</li></p>
                         </div>
                         <div class="product-card">
@@ -256,10 +255,10 @@
                             <p class="price">
                                 <select class="size-select" data-product="Pine Breeze Diffuser">
                                     <option value="100ml|1600">100ml - KES 1600</option>
-                                    <option value="150ml|1600">150ml - KES 1800</option>
+                                    <option value="150ml|1800">150ml - KES 1800</option>
                                 </select>
                             </p>
-                            <button onclick="addToCart('Pine Breeze Diffuser', getSelectedSize('Pine Breeze Diffuser'), getSelectedPrice('Pine Breeze Diffuser'))">Add to Cart</button>
+                            <button class="add-to-cart-btn" data-product="Pine Breeze Diffuser">Add to Cart</button>
                             <p><li>Calming Pine</li> <li>Scents: Apple pie & Bubblegum</li> <li>Burn Time: 4-6 wks</li> <li>Contents: 1 Reed Diffuser+1 box+5 Rattan reeds</li><li>Ideal For: Small to Medium Space such as Bedroom, Office, Bathroom, Living room</li></p>
                         </div>
                     </div>
@@ -268,7 +267,7 @@
                     <h3 id="room-sprays">Room and Linen Sprays</h3>
                     <div class="product-row">
                         <div class="product-card">
-                            <img src="images/Citrus whisper.jpg" alt="Citrus Whisper" data-modal="modal" />
+                            <img src="images/Citrus Whisper.jpg" alt="Citrus Whisper" data-modal="modal" />
                             <h3>Citrus Whisper</h3>
                             <p class="price">
                                 <select class="size-select" data-product="Citrus Whisper">
@@ -276,7 +275,7 @@
                                     <option value="150ml|1100">150ml - KES 1100</option>
                                 </select>
                             </p>
-                            <button onclick="addToCart('Citrus Whisper', getSelectedSize('Citrus Whisper'), getSelectedPrice('Citrus Whisper'))">Add to Cart</button>
+                            <button class="add-to-cart-btn" data-product="Citrus Whisper">Add to Cart</button>
                             <p><li>Scents: Orange Blossom</li> <li>Contents: 1 Room and Linen Spray</li> <li>Ideal For: Small to Medium Space such as Bedroom, Office, Bathroom, Living room</li><li>Linen: Curtains, coaches, carpets, beddings</li></p>
                         </div>
                         <div class="product-card">
@@ -284,11 +283,11 @@
                             <h3>Lavender Comfort</h3>
                             <p class="price">
                                 <select class="size-select" data-product="Lavender Comfort">
-                                   <option value="100ml|950">100ml - KES 950</option>
+                                    <option value="100ml|950">100ml - KES 950</option>
                                     <option value="150ml|1100">150ml - KES 1100</option>
                                 </select>
                             </p>
-                            <button onclick="addToCart('Lavender Comfort', getSelectedSize('Lavender Comfort'), getSelectedPrice('Lavender Comfort'))">Add to Cart</button>
+                            <button class="add-to-cart-btn" data-product="Lavender Comfort">Add to Cart</button>
                             <p><li>Scents: Lavender</li><li>Contents: 1 Room and Linen Spray</li> <li>Ideal For: Small to Medium Space such as Bedroom, Office, Bathroom, Living room</li><li>Linen: Curtains, coaches, carpets, beddings</li></p>
                         </div>
                     </div>
@@ -304,7 +303,7 @@
                                     <option value="10ml|600">10ml - KES 600</option>
                                 </select>
                             </p>
-                            <button onclick="addToCart('Pine Bliss', getSelectedSize('Pine Bliss'), getSelectedPrice('Pine Bliss'))">Add to Cart</button>
+                            <button class="add-to-cart-btn" data-product="Pine Bliss">Add to Cart</button>
                             <p><li>Scents: Pine and Cedar wood</li> <li>Longevity: 3-4 weeks</li> <li>Weight: 10ml</li></p>
                         </div>
                         <div class="product-card">
@@ -315,7 +314,7 @@
                                     <option value="10ml|600">10ml - KES 600</option>
                                 </select>
                             </p>
-                            <button onclick="addToCart('Pine Breeze', getSelectedSize('Pine Breeze'), getSelectedPrice('Pine Breeze'))">Add to Cart</button>
+                            <button class="add-to-cart-btn" data-product="Pine Breeze">Add to Cart</button>
                             <p><li>Scents: Pine and Cedar wood</li> <li>Longevity: 3-4 weeks</li> <li>Weight: 10ml</li></p>
                         </div>
                     </div>
@@ -324,33 +323,31 @@
             </div>
             <!-- Gift Box Section -->
             <h3 id="gift-box">Gift Box</h3>
-            
             <div class="product-row">
                 <div class="product-card">
                     <img src="images/GiftBox.jpg" alt="Gift Box" data-modal="modal" />
                     <h3>Gift Box</h3>
                     <p class="price">
-                        <select class="size-select" data-product="Gift Box">
+                        <select class="size-select" data-product="Gift Box 4000">
                             <option value="1box|4000">1 Box - KES 4000</option>
                         </select>
                     </p>
-                    <button onclick="addToCart('Gift Box', getSelectedSize('Gift Box'), getSelectedPrice('Gift Box'))">Add to Cart</button>
+                    <button class="add-to-cart-btn" data-product="Gift Box 4000">Add to Cart</button>
                     <p>
                         <li>1 x 200ml Blossom Collection Scented Candle</li>
                         <li>1 x 150ml Room and Linen Spray</li>
                         <li>1 x 150ml Reed Diffuser</li>
-                     
                     </p>
                 </div>
-                 <div class="product-card">
+                <div class="product-card">
                     <img src="images/GiftBox.jpg" alt="Gift Box" data-modal="modal" />
                     <h3>Gift Box</h3>
                     <p class="price">
-                        <select class="size-select" data-product="Gift Box">
+                        <select class="size-select" data-product="Gift Box 4800">
                             <option value="1box|4800">1 Box - KES 4800</option>
                         </select>
                     </p>
-                    <button onclick="addToCart('Gift Box', getSelectedSize('Gift Box'), getSelectedPrice('Gift Box'))">Add to Cart</button>
+                    <button class="add-to-cart-btn" data-product="Gift Box 4800">Add to Cart</button>
                     <p>
                         <li>1 x 220ml Scented Candle</li>
                         <li>1 x 150ml Room and Linen Spray</li>
