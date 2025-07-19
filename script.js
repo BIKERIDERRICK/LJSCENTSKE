@@ -165,7 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
             `\nTotal: KES ${cart.reduce((s, i) => s + i.price * i.quantity, 0).toFixed(2)}`;
 
         window.open(
-            `https://wa.me/254706361664?text=${encodeURIComponent(details)}`,
+            `https://wa.me/+254702899085?text=${encodeURIComponent(details)}`,
             '_blank'
         );
 
