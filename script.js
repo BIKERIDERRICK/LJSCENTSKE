@@ -59,36 +59,58 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function getSelectedSize(productName) {
         const select = document.querySelector(`.size-select[data-product="${productName}"]`);
-        return select ? select.value.split('|')[0] : '';
+        if (!select) {
+            console.error(`No size select found for product: ${productName}`);
+            return '';
+        }
+        const value = select.value.split('|')[0];
+        if (!value) {
+            console.error(`Invalid size for product: ${productName}`);
+            return '';
+        }
+        return value;
     }
 
     function getSelectedPrice(productName) {
         const select = document.querySelector(`.size-select[data-product="${productName}"]`);
-        return select ? parseFloat(select.value.split('|')[1]) : 0;
+        if (!select) {
+            console.error(`No size select found for product: ${productName}`);
+            return 0;
+        }
+        const price = parseFloat(select.value.split('|')[1]);
+        if (isNaN(price) || price <= 0) {
+            console.error(`Invalid price for product: ${productName}`);
+            return 0;
+        }
+        return price;
     }
 
     function addToCart(name, size, price) {
         if (!name || !size || !price) {
             console.error('Missing cart item details', { name, size, price });
+            alert('Please select a valid size before adding to cart.');
             return;
         }
         const existing = cart.find(item => item.name === name && item.size === size);
-        if (existing) existing.quantity += 1;
-        else cart.push({ name, size, price, quantity: 1 });
-        updateCart();
-    }
-
-    function removeFromCart(idx) {
-        if (idx >= 0 && idx < cart.length) {
-            cart.splice(idx, 1);
-            updateCart();
+        if (existing) {
+            existing.quantity += 1;
+        } else {
+            cart.push({ name, size, price, quantity: 1 });
         }
+        updateCart();
     }
 
     function updateCart() {
         const items = document.getElementById('cart-items');
         const totalEl = document.getElementById('cart-total');
-        const countEls = [document.getElementById('cart-count'), document.getElementById('middle-cart-count')];
+        const countEls = [
+            document.getElementById('cart-count'),
+            document.getElementById('middle-cart-count')
+        ].filter(el => el !== null);
+        if (!items || !totalEl) {
+            console.error('Cart elements missing', { items, totalEl });
+            return;
+        }
         items.innerHTML = '';
 
         let total = 0, tQty = 0;
@@ -98,14 +120,21 @@ document.addEventListener('DOMContentLoaded', () => {
             const div = document.createElement('div');
             div.className = 'cart-item';
             div.innerHTML = `
-                ${item.name} (${item.size}) - KES ${item.price} x ${item.quantity}
-                <button onclick="removeFromCart(${idx})">Remove</button>
+                ${item.name} (${item.size}) - KES ${item.price.toFixed(2)} x ${item.quantity}
+                <button class="remove-from-cart" data-idx="${idx}">Remove</button>
             `;
             items.appendChild(div);
         });
 
         totalEl.textContent = total.toFixed(2);
         countEls.forEach(el => el.textContent = tQty);
+
+        // Attach remove button listeners
+        document.querySelectorAll('.remove-from-cart').forEach(btn => {
+            btn.addEventListener('click', () => {
+                removeFromCart(parseInt(btn.dataset.idx));
+            });
+        });
     }
 
     function proceedToCheckout() {
@@ -118,12 +147,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function submitOrder(e) {
         e.preventDefault();
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const addr = document.getElementById('address').value;
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const addr = document.getElementById('address').value.trim();
+
+        if (!name || !email || !addr) {
+            alert('Please fill in all fields.');
+            return;
+        }
+        if (!email.includes('@') || !email.includes('.')) {
+            alert('Please enter a valid email address.');
+            return;
+        }
 
         const details = `Order from ${name}\nEmail: ${email}\nAddress: ${addr}\n` +
-            cart.map(i => `${i.name} (${i.size}) - KES ${i.price} x ${i.quantity}`).join('\n') +
+            cart.map(i => `${i.name} (${i.size}) - KES ${i.price.toFixed(2)} x ${i.quantity}`).join('\n') +
             `\nTotal: KES ${cart.reduce((s, i) => s + i.price * i.quantity, 0).toFixed(2)}`;
 
         window.open(
@@ -159,36 +197,47 @@ document.addEventListener('DOMContentLoaded', () => {
     let slideIndex = 0;
     function showSlides() {
         const slides = document.querySelectorAll('.slide');
+        if (slides.length === 0) {
+            console.warn('No slides found');
+            return;
+        }
         slides.forEach(s => s.classList.remove('active'));
-        slideIndex = (slideIndex % slides.length) + 1;
-        slides[slideIndex - 1].classList.add('active');
+        slideIndex = (slideIndex + 1) % slides.length;
+        slides[slideIndex].classList.add('active');
         setTimeout(showSlides, 5000);
     }
     showSlides();
 
-    // Re-attach cart buttons
-    document.querySelectorAll('button[onclick^="addToCart"]').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            const [name, sizeFn, priceFn] = btn
-                .getAttribute('onclick')
-                .replace('addToCart(', '')
-                .replace(')', '')
-                .split(',');
-            const size = eval(sizeFn);
-            const price = eval(priceFn);
-            addToCart(name.replace(/['"]/g, ''), size, price);
-        });
+    // Add to cart buttons (replacing inline onclick)
+    document.addEventListener('click', (e) => {
+        if (e.target.matches('.add-to-cart-btn') || e.target.matches('button[onclick^="addToCart"]')) {
+            const productName = e.target.dataset.product || e.target.getAttribute('onclick')
+                .replace("addToCart('", '').replace(/'.*/, '');
+            const size = getSelectedSize(productName);
+            const price = getSelectedPrice(productName);
+            addToCart(productName, size, price);
+        }
     });
 
     // Scrolling arrows
-    function scrollPricing(direction) {
+    window.scrollPricing = function(direction) {
         document.querySelectorAll('.pricing-grid .product-row').forEach(row => {
             row.scrollLeft += direction === 'left' ? -300 : 300;
         });
-    }
+    };
 
-    function scrollProducts(direction) {
+    window.scrollProducts = function(direction) {
         const grid = document.querySelector('#products .product-grid');
-        grid.scrollLeft += direction === 'left' ? -320 : 320;
-    }
+        if (grid) {
+            grid.scrollLeft += direction === 'left' ? -320 : 320;
+        }
+    };
 });
+
+// Global functions for scrolling and cart
+function removeFromCart(idx) {
+    if (idx >= 0 && idx < cart.length) {
+        cart.splice(idx, 1);
+        updateCart();
+    }
+}
